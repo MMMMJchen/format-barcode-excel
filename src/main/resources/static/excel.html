@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	.wrap {
+		text-align: center;
+	}
+	.title {
+		margin: 50px auto;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="title">== 此平台用于做条码excel的转换 ==</div>
+		<div class="file">
+			<input type="file" value="选择excel文件"  id="file" name="name" />
+			<input type="button" value=" 开始转换  "  onclick="start();"/>
+		</div>
+	</div>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+		function start(){
+			var formData = new FormData();
+			formData.append("file", document.getElementById("file").files[0]);
+			$.ajax({
+				type:'post',
+				url:"/submitFile",
+				dataType:"text",
+				data:formData, 
+				contentType: false,
+				processData: false,
+				success:function(data){
+					alert(data);
+				}
+			});
+		}
+	</script>
+</body>
+</html>
